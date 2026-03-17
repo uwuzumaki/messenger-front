@@ -1,28 +1,35 @@
+import Layout from "./Components/Layout/Layout";
+import Homepage from "./Components/Homepage/Homepage";
+import Profile from "./Components/Profile/Profile";
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
+import Chat from "./Components/Chat/Chat";
+
 const routes = [
   {
     path: "/",
-    // layout with nav and footer
-    // element: <h1>Hello World</h1>,
+    element: <Layout />,
     //loader
+    //id
     children: [
       {
         index: true,
         // logged in = homepage with button to profile or chat
         // not = login or register buttons
-        element: <h3>home</h3>,
+        element: <Homepage />,
       },
       {
         path: "/profile",
-        element: <h3>profile</h3>,
+        element: <Profile />,
       },
-      { path: "/login", element: <h3>login</h3> },
+      { path: "/login", element: <Login /> },
       {
         path: "register",
-        element: <h3>register</h3>,
+        element: <Register />,
       },
       {
         path: "chat",
-        element: <h3>chat</h3>,
+        element: <Chat />,
       },
     ],
   },
