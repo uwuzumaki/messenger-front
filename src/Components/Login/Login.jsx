@@ -1,7 +1,27 @@
+import { useForm } from "react-hook-form";
+
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  console.log(watch("username"));
+
   return (
     <>
-      <div>Login</div>
+      <div>
+        <form onSubmit={handleSubmit(onsubmit)}>
+          <input {...register("username", { required: true })} />
+          <input {...register("password", { required: true })} />
+        </form>
+      </div>
     </>
   );
 };
