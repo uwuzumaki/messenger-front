@@ -18,8 +18,14 @@ const Login = () => {
     <>
       <div>
         <form onSubmit={handleSubmit(onsubmit)}>
-          <input {...register("username", { required: true })} />
-          <input {...register("password", { required: true })} />
+          <input
+            placeholder="Username"
+            {...register("username", { required: true })}
+          />
+          <input
+            placeholder="Password"
+            {...register("password", { required: true })}
+          />
         </form>
       </div>
     </>
