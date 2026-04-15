@@ -7,8 +7,12 @@ const Navigation = () => {
       <nav className="flex justify-between border-b p-2">
         <Link to="/">Chat</Link>
         <div>
-          <Button variant="secondary">Chat</Button>
-          <Button variant="secondary">Profile</Button>
+          <Button variant="secondary" to="/chat">
+            Chat
+          </Button>
+          <Button variant="secondary" to="/profile">
+            Profile
+          </Button>
           <Button variant="secondary">Sign Out</Button>
         </div>
         <div className="flex">
