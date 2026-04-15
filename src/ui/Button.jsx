@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Button = ({ variant = "primary", children }) => {
+const Button = ({ variant = "primary", children, ...props }) => {
   const base = "mx-2 px-2 py-1 rounded-lg";
 
   const variants = {
@@ -8,7 +8,11 @@ const Button = ({ variant = "primary", children }) => {
     secondary: "border-0",
   };
 
-  return <Link className={`${base} ${variants[variant]}`}>{children}</Link>;
+  return (
+    <Link className={`${base} ${variants[variant]}`} {...props}>
+      {children}
+    </Link>
+  );
 };
 
 export default Button;

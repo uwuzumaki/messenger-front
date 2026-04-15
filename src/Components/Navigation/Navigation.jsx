@@ -16,8 +16,10 @@ const Navigation = () => {
           <Button variant="secondary">Sign Out</Button>
         </div>
         <div className="flex">
-          <Button variant="secondary">Sign In</Button>
-          <Button>Sign Up</Button>
+          <Button variant="secondary" to="login">
+            Sign In
+          </Button>
+          <Button to="/register">Sign Up</Button>
         </div>
       </nav>
     </>
