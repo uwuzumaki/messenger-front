@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import { socket } from "../../socket";
+// import { socket } from "../../socket";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
 
-  useEffect(() => {
-    const socketMessages = (msg) => {
-      setMessages((prevMsg) => [...prevMsg, msg]);
-    };
+  // useEffect(() => {
+  //   const socketMessages = (msg) => {
+  //     setMessages((prevMsg) => [...prevMsg, msg]);
+  //   };
 
-    socket.on("chat message", socketMessages);
+  //   socket.on("chat message", socketMessages);
 
-    return () => {
-      socket.off("chat message", socketMessages);
-    };
-  }, []);
+  //   return () => {
+  //     socket.off("chat message", socketMessages);
+  //   };
+  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
