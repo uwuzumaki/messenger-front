@@ -12,8 +12,6 @@ const Register = () => {
     console.log(data, "123");
   };
 
-  console.log(watch(errors.email));
-
   return (
     <>
       <div className="w-1/3">
@@ -21,7 +19,7 @@ const Register = () => {
           <div className="flex flex-col">
             <label>Email</label>
             <input
-              className="my-1 rounded border border-white p-1"
+              className="my-1 rounded border-2 border-white p-1 focus:border-emerald-400 focus:ring-0 focus:outline-none"
               placeholder="Email"
               {...register("email", { required: true })}
             />
@@ -30,7 +28,7 @@ const Register = () => {
           <div className="my-4 flex flex-col">
             <label>Username</label>
             <input
-              className="my-1 rounded border border-white p-1"
+              className="my-1 rounded border-2 border-white p-1 focus:border-emerald-400 focus:ring-0 focus:outline-none"
               placeholder="Username"
               {...register("username", { required: true })}
             />
@@ -41,18 +39,20 @@ const Register = () => {
           <div className="flex flex-col">
             <label>Password</label>
             <input
-              className="my-1 rounded border border-white p-1"
+              className="my-1 rounded border-2 border-white p-1 focus:border-emerald-400 focus:ring-0 focus:outline-none"
               placeholder="Password"
               {...register("password", { required: true })}
             />
             <label>Confirm Password</label>
             <input
-              className="my-1 rounded border border-white p-1"
-              placeholder="Password"
+              className="my-1 rounded border-2 border-white p-1 focus:border-emerald-400 focus:ring-0 focus:outline-none"
+              placeholder="Confirm password"
               {...register("confirmPassword", {
-                required: "Please confirm your password",
+                required: true,
                 validate: (value) => {
-                  value === watch("password") || "Passwords must match!";
+                  return value === watch("password")
+                    ? true
+                    : "Passwords must match!";
                 },
               })}
             />
@@ -60,7 +60,11 @@ const Register = () => {
               <p className="text-red-500">{errors.confirmPassword.message}</p>
             )}
           </div>
-          <input type="submit" value="Create Account" />
+          <input
+            className="container my-2 cursor-pointer rounded-lg border border-emerald-400 bg-emerald-400 p-2 text-center hover:border-emerald-600 hover:bg-emerald-600 hover:text-white"
+            type="submit"
+            value="Create Account >"
+          />
         </form>
       </div>
     </>
