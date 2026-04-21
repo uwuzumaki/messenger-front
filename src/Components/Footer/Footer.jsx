@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
-    <footer className="mx-auto flex justify-center bg-emerald-400">
-      <a href="https://github.com/uwuzumaki/odin-blog-admin">
+    <footer className="flex justify-center bg-emerald-400">
+      <a href="https://github.com/uwuzumaki/messenger-front">
         {" "}
         <svg
           className="m-4 h-6 w-6"
