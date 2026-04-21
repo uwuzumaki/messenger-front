@@ -12,12 +12,10 @@ const Login = () => {
     console.log(data);
   };
 
-  console.log(watch("email"));
-
   return (
     <>
       <div className="w-1/4">
-        <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           <div className="flex flex-col">
             <label>Email</label>
             <input
