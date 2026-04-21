@@ -14,7 +14,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="w-1/3">
+      <div className="w-1/4">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           <div className="flex flex-col">
             <label>Email</label>
