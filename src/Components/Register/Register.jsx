@@ -1,15 +1,33 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data, "123");
+  const onSubmit = async (data) => {
+    const url = `http://localhost:3000/register`;
+    const info = {
+      email: data.email,
+      username: data.username,
+      password: data.password,
+    };
+    let result;
+    try {
+      result = await axios.post(url, info, { withCredentials: true });
+      console.log(result);
+      navigate("/");
+    } catch (err) {
+      reset();
+      console.log(err);
+    }
   };
 
   return (
