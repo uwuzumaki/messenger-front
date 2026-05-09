@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Button from "../../ui/Button.jsx";
+import { AuthContext } from "../../contexts/authContext.jsx";
+import { use } from "react";
 
 const Navigation = () => {
+  const auth = use(AuthContext);
   return (
     <>
       <nav className="flex items-center justify-between p-2">
@@ -16,13 +19,18 @@ const Navigation = () => {
           <Button variant="secondary" to="/profile">
             Profile
           </Button>
-          <Button variant="secondary">Sign Out</Button>
         </div>
         <div className="flex">
-          <Button variant="secondary" to="login">
-            Sign In
-          </Button>
-          <Button to="/register">Sign Up</Button>
+          {auth.authenticated ? (
+            <Button variant="secondary">Sign Out</Button>
+          ) : (
+            <>
+              <Button variant="secondary" to="login">
+                Sign In
+              </Button>
+              <Button to="/register">Sign Up</Button>
+            </>
+          )}
         </div>
       </nav>
     </>
