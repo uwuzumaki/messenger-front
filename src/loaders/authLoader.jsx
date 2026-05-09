@@ -6,7 +6,7 @@ const authLoader = async () => {
     const res = await axios.get(url, { withCredentials: true });
     if (res.statusText == "OK") {
       const user = res.data.user;
-      return { user, authenicated: true };
+      return { user, authenticated: true };
     }
     return { user: null, authenticated: false };
   } catch (err) {

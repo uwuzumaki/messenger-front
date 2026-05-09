@@ -1,10 +1,19 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const loaderData = useLoaderData();
   const [user, setUser] = useState();
   const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    if (loaderData) {
+      setUser(loaderData.user.username);
+      setAuthenticated(true);
+    }
+  }, [loaderData]);
 
   const value = {
     user,
