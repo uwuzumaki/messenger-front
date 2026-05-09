@@ -4,13 +4,14 @@ import Profile from "./Components/Profile/Profile";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import Chat from "./Components/Chat/Chat";
+import authLoader from "./loaders/authLoader";
 
 const routes = [
   {
     path: "/",
     element: <Layout />,
-    //loader
-    //id
+    loader: authLoader,
+    id: "root",
     children: [
       {
         index: true,
