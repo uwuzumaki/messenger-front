@@ -1,4 +1,7 @@
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { AuthContext } from "../../contexts/authContext";
+import { use, useEffect } from "react";
 
 const Login = () => {
   const {
@@ -8,8 +11,18 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const auth = use(AuthContext);
+
+  const onSubmit = async (data) => {
+    const newData = { username: data.email, password: data.password };
+    const url = "http://localhost:3000/authentication/login";
+    try {
+      const res = await axios.post(url, newData, { withCredentials: true });
+      auth.setUser(res.data.user.username);
+      auth.setAuthenticated(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
