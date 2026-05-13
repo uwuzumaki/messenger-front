@@ -21,11 +21,11 @@ const Register = () => {
     };
     let result;
     try {
-      result = await axios.post(url, info, { withCredentials: true });
-      console.log(result);
+      result = await axios.post(url, info, {
+        withCredentials: true,
+      });
       navigate("/");
     } catch (err) {
-      reset();
       console.log(err);
     }
   };
