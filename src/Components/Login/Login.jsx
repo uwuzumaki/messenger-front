@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { AuthContext } from "../../contexts/authContext";
 import { use, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -12,6 +13,7 @@ const Login = () => {
   } = useForm();
 
   const auth = use(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     const newData = { username: data.email, password: data.password };
@@ -20,6 +22,8 @@ const Login = () => {
       const res = await axios.post(url, newData, { withCredentials: true });
       auth.setUser(res.data.user.username);
       auth.setAuthenticated(true);
+      console.log(res);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
