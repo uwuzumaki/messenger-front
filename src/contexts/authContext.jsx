@@ -1,5 +1,6 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -7,11 +8,32 @@ const AuthProvider = ({ children }) => {
   const loaderData = useLoaderData();
   const [user, setUser] = useState();
   const [authenticated, setAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    const url = "http://localhost:3000/authentication/logout";
+    console.log("123");
+    try {
+      const res = await axios.get(url, { withCredentials: true });
+      setUser(null);
+      setAuthenticated(false);
+      console.log(res);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
-    if (loaderData) {
+    // if (loaderData) {
+    //   setUser(loaderData.user.username);
+    //   setAuthenticated(true);
+    // }
+    try {
       setUser(loaderData.user.username);
       setAuthenticated(true);
+    } catch (err) {
+      console.log(err);
     }
   }, [loaderData]);
 
@@ -20,6 +42,7 @@ const AuthProvider = ({ children }) => {
     setUser,
     authenticated,
     setAuthenticated,
+    logout,
   };
 
   return <AuthContext value={value}>{children}</AuthContext>;

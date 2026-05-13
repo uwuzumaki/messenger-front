@@ -22,7 +22,7 @@ const Navigation = () => {
         </div>
         <div className="flex">
           {auth.authenticated ? (
-            <Button variant="secondary">Sign Out</Button>
+            <button onClick={auth.logout}>Sign Out</button>
           ) : (
             <>
               <Button variant="secondary" to="login">
