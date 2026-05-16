@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
+import { useContext } from "react";
 
 const Homepage = () => {
+  const auth = useContext(AuthContext);
   return (
     <div className="flex w-1/4 flex-1 flex-col items-center justify-center">
       <div className="mb-8 text-3xl">Welcome!</div>
@@ -17,6 +20,7 @@ const Homepage = () => {
         >
           Chat
         </Link>
+        <>{auth.user}</>
       </div>
     </div>
   );

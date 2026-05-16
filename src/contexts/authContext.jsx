@@ -25,14 +25,11 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // if (loaderData) {
-    //   setUser(loaderData.user.username);
-    //   setAuthenticated(true);
-    // }
     try {
       setUser(loaderData.user.username);
       setAuthenticated(true);
     } catch (err) {
+      // Needs to do something if no loader data (maybe redirect to home?)
       console.log(err);
     }
   }, [loaderData]);
