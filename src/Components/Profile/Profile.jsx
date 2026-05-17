@@ -6,7 +6,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    !loaderData.authenticated ? navigate("/login") : null;
+    !loaderData.authenticated ? navigate("/unauthorized") : null;
   });
 
   return (

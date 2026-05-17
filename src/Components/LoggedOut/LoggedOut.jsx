@@ -1,0 +1,27 @@
+import { Link } from "react-router-dom";
+
+const LoggedOut = () => {
+  return (
+    <div className="flex w-1/4 flex-1 flex-col items-center justify-center">
+      <div className="mb-8 text-3xl">
+        You're not logged in! Please register or login!
+      </div>
+      <div className="flex w-full justify-around">
+        <Link
+          className="mx-2 rounded-lg border border-solid border-indigo-500 bg-indigo-500 px-2 py-1 text-white"
+          to="/login"
+        >
+          Login
+        </Link>
+        <Link
+          className="mx-2 rounded-lg border border-solid border-yellow-500 bg-yellow-500 px-2 py-1 text-black"
+          to="/register"
+        >
+          Registration
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default LoggedOut;

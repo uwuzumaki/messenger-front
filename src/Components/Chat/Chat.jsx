@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import LoggedOut from "../LoggedOut/LoggedOut";
 // import { socket } from "../../socket";
 
 const Chat = () => {
@@ -9,7 +10,7 @@ const Chat = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    !loaderData.authenticated ? navigate("/login") : null;
+    !loaderData.authenticated ? navigate("/unauthorized") : null;
   });
 
   // useEffect(() => {
