@@ -5,6 +5,7 @@ import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import Chat from "./Components/Chat/Chat";
 import authLoader from "./loaders/authLoader";
+import protectedLoader from "./loaders/protectedLoader";
 
 const routes = [
   {
@@ -21,6 +22,7 @@ const routes = [
       },
       {
         path: "/profile",
+        loader: authLoader,
         element: <Profile />,
       },
       { path: "/login", element: <Login /> },
@@ -30,6 +32,7 @@ const routes = [
       },
       {
         path: "chat",
+        loader: authLoader,
         element: <Chat />,
       },
     ],
