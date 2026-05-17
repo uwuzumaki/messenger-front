@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 // import { socket } from "../../socket";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const loaderData = useLoaderData();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    !loaderData.authenticated ? navigate("/login") : null;
+  });
 
   // useEffect(() => {
   //   const socketMessages = (msg) => {
