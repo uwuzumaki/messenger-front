@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { use, useEffect } from "react";
+import { use } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Spinner from "../../ui/Spinner";
@@ -60,7 +60,7 @@ const Login = () => {
               <p className="text-red-500">Password is required</p>
             )}
           </div>
-          <div className="data-disabled">
+          <div>
             <button
               className="relative container my-2 flex cursor-pointer justify-around rounded-lg border border-emerald-400 bg-emerald-400 p-2 text-center hover:border-emerald-600 hover:bg-emerald-600 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
               type="submit"

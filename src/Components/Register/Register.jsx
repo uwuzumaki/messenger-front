@@ -1,9 +1,12 @@
 import { use } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import Spinner from "../../ui/Spinner";
+
 import { AuthContext } from "../../contexts/authContext";
 import { LoadingContext } from "../../contexts/loadingContext";
-import axios from "axios";
 
 const Register = () => {
   const {
@@ -90,11 +93,17 @@ const Register = () => {
               <p className="text-red-500">{errors.confirmPassword.message}</p>
             )}
           </div>
-          <input
-            className="container my-2 cursor-pointer rounded-lg border border-emerald-400 bg-emerald-400 p-2 text-center hover:border-emerald-600 hover:bg-emerald-600 hover:text-white"
-            type="submit"
-            value="Create Account >"
-          />
+          <div>
+            <button
+              className="relative container my-2 flex cursor-pointer justify-around rounded-lg border border-emerald-400 bg-emerald-400 p-2 text-center hover:border-emerald-600 hover:bg-emerald-600 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              type="submit"
+              value="Sign In"
+              disabled={load.loading}
+            >
+              <span className="my-auto flex-2">Register &#8250;</span>
+              {load.loading ? <Spinner /> : null}
+            </button>
+          </div>
         </form>
       </div>
     </>
