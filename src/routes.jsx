@@ -5,8 +5,7 @@ import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import Chat from "./Components/Chat/Chat";
 import authLoader from "./loaders/authLoader";
-import protectedLoader from "./loaders/protectedLoader";
-
+import LoggedOut from "./Components/LoggedOut/LoggedOut";
 const routes = [
   {
     path: "/",
@@ -34,6 +33,10 @@ const routes = [
         path: "chat",
         loader: authLoader,
         element: <Chat />,
+      },
+      {
+        path: "unauthorized",
+        element: <LoggedOut />,
       },
     ],
   },
