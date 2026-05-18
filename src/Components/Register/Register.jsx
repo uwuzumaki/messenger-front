@@ -1,5 +1,8 @@
+import { use } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/authContext";
+import { LoadingContext } from "../../contexts/loadingContext";
 import axios from "axios";
 
 const Register = () => {
@@ -10,9 +13,13 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm();
+
+  const auth = use(AuthContext);
+  const load = use(LoadingContext);
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
+    load.setLoading(true);
     const url = `http://localhost:3000/register`;
     const info = {
       email: data.email,
@@ -24,9 +31,14 @@ const Register = () => {
       result = await axios.post(url, info, {
         withCredentials: true,
       });
+      console.log(result);
+      auth.setUser(result.data.user.username);
+      auth.setAuthenticated(true);
       navigate("/");
     } catch (err) {
       console.log(err);
+    } finally {
+      load.setLoading(false);
     }
   };
 
