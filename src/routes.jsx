@@ -8,35 +8,37 @@ import authLoader from "./loaders/authLoader";
 import LoggedOut from "./Components/LoggedOut/LoggedOut";
 const routes = [
   {
-    path: "/",
     element: <Layout />,
     loader: authLoader,
     id: "root",
     children: [
       {
-        index: true,
-        // logged in = homepage with button to profile or chat
-        // not = login or register buttons
-        element: <Homepage />,
-      },
-      {
         path: "/profile",
         loader: authLoader,
         element: <Profile />,
       },
-      { path: "/login", element: <Login /> },
       {
-        path: "register",
-        element: <Register />,
-      },
-      {
-        path: "chat",
-        loader: authLoader,
+        path: "/chat",
         element: <Chat />,
       },
+    ],
+  },
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
       {
-        path: "unauthorized",
+        index: true,
+        element: <Homepage />,
+      },
+      {
+        path: "/unauthorized",
         element: <LoggedOut />,
+      },
+      { path: "/login", element: <Login /> },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
   },
