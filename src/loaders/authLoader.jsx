@@ -1,17 +1,15 @@
 import axios from "axios";
+import { redirect } from "react-router-dom";
 
 const authLoader = async () => {
   const url = `http://localhost:3000/authentication/verify`;
   try {
     const res = await axios.get(url, { withCredentials: true });
-    if (res.statusText == "OK") {
-      const user = res.data.user;
-      return { user, authenticated: true };
-    }
-    return { user: null, authenticated: false };
+    const user = res.data.user;
+    return { user, authenticated: true };
   } catch (err) {
     console.log(err);
-    return { user: null, authenicated: false };
+    return redirect("/unauthorized");
   }
 };
 
