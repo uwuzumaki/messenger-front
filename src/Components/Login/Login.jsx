@@ -1,9 +1,12 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { AuthContext } from "../../contexts/authContext";
-import { LoadingContext } from "../../contexts/loadingContext";
 import { use, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+import Spinner from "../../ui/Spinner";
+
+import { AuthContext } from "../../contexts/authContext";
+import { LoadingContext } from "../../contexts/loadingContext";
 
 const Login = () => {
   const {
@@ -12,10 +15,10 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm();
-
   const auth = use(AuthContext);
   const load = use(LoadingContext);
   const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     load.setLoading(true);
     const newData = { username: data.email, password: data.password };
@@ -57,11 +60,18 @@ const Login = () => {
               <p className="text-red-500">Password is required</p>
             )}
           </div>
-          <input
-            className="container my-2 cursor-pointer rounded-lg border border-emerald-400 bg-emerald-400 p-2 text-center hover:border-emerald-600 hover:bg-emerald-600 hover:text-white"
-            type="submit"
-            value="Sign In"
-          />
+          <div className="data-disabled">
+            <button
+              className="relative container my-2 flex cursor-pointer justify-around rounded-lg border border-emerald-400 bg-emerald-400 p-2 text-center hover:border-emerald-600 hover:bg-emerald-600 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+              type="submit"
+              value="Sign In"
+              disabled={load.loading}
+            >
+              <span className="my-auto flex-2">Sign in &#8250;</span>
+
+              {load.loading ? <Spinner /> : null}
+            </button>
+          </div>
         </form>
       </div>
     </>
