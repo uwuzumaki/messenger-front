@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { AuthContext } from "../../contexts/authContext";
+import { LoadingContext } from "../../contexts/loadingContext";
 import { use, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,9 +14,10 @@ const Login = () => {
   } = useForm();
 
   const auth = use(AuthContext);
+  const load = use(LoadingContext);
   const navigate = useNavigate();
-
   const onSubmit = async (data) => {
+    load.setLoading(true);
     const newData = { username: data.email, password: data.password };
     const url = "http://localhost:3000/authentication/login";
     try {
@@ -26,6 +28,8 @@ const Login = () => {
       navigate("/");
     } catch (err) {
       console.log(err);
+    } finally {
+      load.setLoading(false);
     }
   };
 
