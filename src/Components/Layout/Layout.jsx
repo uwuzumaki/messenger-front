@@ -1,18 +1,26 @@
 import { data, Outlet } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
+import LoadingOverlay from "../../ui/Loader";
 import Footer from "../Footer/Footer";
-import { AuthProvider, AuthContext } from "../../contexts/authContext";
-import { use, useEffect } from "react";
+import { AuthProvider } from "../../contexts/authContext";
+import { LoadingContext } from "../../contexts/loadingContext";
+import { use } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const Layout = () => {
+  const loading = use(LoadingContext);
+
   return (
-    <div className="flex flex-1 flex-col">
+    <div className="relative flex flex-1 flex-col">
       <AuthProvider>
         <Navigation />
-        <div className="flex flex-1 flex-col items-center justify-center bg-slate-300">
-          <Outlet />
-        </div>
+        {loading.loading ? (
+          <div className="flex flex-1 flex-col items-center justify-center bg-slate-300">
+            <Outlet />
+          </div>
+        ) : (
+          <LoadingOverlay />
+        )}
         <Footer />
       </AuthProvider>
     </div>
