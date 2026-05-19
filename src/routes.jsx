@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import Chat from "./Components/Chat/Chat";
 import LoggedOut from "./Components/LoggedOut/LoggedOut";
+import LoadingOverlay from "./ui/Loader";
 import authLoader from "./loaders/authLoader";
 import redirectLoader from "./loaders/redirectLoader";
 
@@ -14,6 +15,7 @@ const routes = [
     element: <Layout />,
     loader: authLoader,
     id: "root",
+    hydrateFallbackElement: <LoadingOverlay />,
     children: [
       { path: "/home", element: <LandingPage /> },
       {
@@ -30,6 +32,7 @@ const routes = [
     path: "/",
     element: <Layout />,
     loader: redirectLoader,
+    hydrateFallbackElement: <LoadingOverlay />,
     children: [
       {
         index: true,

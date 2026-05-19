@@ -13,7 +13,7 @@ const LoadingOverlay = () => {
             data-original="#000000"
           />
         </svg>
-        <span class="sr-only">Loading…</span>
+        <span className="m-2 animate-pulse">Loading…</span>
       </div>
     </div>
   );
