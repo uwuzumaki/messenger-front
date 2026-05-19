@@ -1,29 +1,22 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
 import LoggedOut from "../LoggedOut/LoggedOut";
-// import { socket } from "../../socket";
+import { socket } from "../../socket.js";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const loaderData = useLoaderData();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    !loaderData.authenticated ? navigate("/unauthorized") : null;
-  });
+    const socketMessages = (msg) => {
+      setMessages((prevMsg) => [...prevMsg, msg]);
+    };
 
-  // useEffect(() => {
-  //   const socketMessages = (msg) => {
-  //     setMessages((prevMsg) => [...prevMsg, msg]);
-  //   };
+    socket.on("chat message", socketMessages);
 
-  //   socket.on("chat message", socketMessages);
-
-  //   return () => {
-  //     socket.off("chat message", socketMessages);
-  //   };
-  // }, []);
+    return () => {
+      socket.off("chat message", socketMessages);
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
