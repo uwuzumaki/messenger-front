@@ -28,7 +28,7 @@ const Login = () => {
       auth.setUser(res.data.user.username);
       auth.setAuthenticated(true);
       console.log(res);
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       console.log(err);
     } finally {
@@ -68,7 +68,6 @@ const Login = () => {
               disabled={load.loading}
             >
               <span className="my-auto flex-2">Sign in &#8250;</span>
-
               {load.loading ? <Spinner /> : null}
             </button>
           </div>
