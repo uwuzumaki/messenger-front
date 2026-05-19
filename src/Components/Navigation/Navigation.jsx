@@ -27,7 +27,12 @@ const Navigation = () => {
         </div>
         <div className="flex">
           {auth.authenticated ? (
-            <button onClick={auth.logout}>Sign Out</button>
+            <button
+              className="mx-2 rounded-lg px-2 py-1 transition duration-250 hover:cursor-pointer hover:text-emerald-400 hover:drop-shadow"
+              onClick={auth.logout}
+            >
+              Sign Out
+            </button>
           ) : (
             <>
               <Button variant="secondary" to="login">
