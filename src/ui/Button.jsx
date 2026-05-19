@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
 const Button = ({ variant = "primary", children, ...props }) => {
-  const base = "mx-2 px-2 py-1 rounded-lg";
+  const base =
+    "mx-2 px-2 py-1 rounded-lg hover:drop-shadow transition hover:text-emerald-400 duration-[250ms]";
 
   const variants = {
     primary: "border-solid border border-emerald-400 bg-emerald-50",

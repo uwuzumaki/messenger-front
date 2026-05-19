@@ -6,13 +6,13 @@ const LandingPage = () => {
       <div className="mb-8 text-3xl">Welcome!</div>
       <div className="flex w-full justify-around">
         <Link
-          className="mx-2 rounded-lg border border-solid border-indigo-500 bg-indigo-500 px-2 py-1 text-black"
+          className="mx-2 rounded-lg border border-solid border-indigo-500 bg-indigo-500 px-2 py-1 text-black drop-shadow duration-250 hover:drop-shadow-indigo-700"
           to="/Chat"
         >
           Chat
         </Link>
         <Link
-          className="mx-2 rounded-lg border border-solid border-yellow-500 bg-yellow-500 px-2 py-1 text-black"
+          className="mx-2 rounded-lg border border-solid border-yellow-500 bg-yellow-500 px-2 py-1 text-black drop-shadow duration-250 hover:drop-shadow-yellow-700"
           to="/profile"
         >
           Profile
