@@ -8,17 +8,22 @@ const Navigation = () => {
   return (
     <>
       <nav className="flex items-center justify-between p-2">
-        <Link className="text-3xl drop-shadow" to="/">
-          <span className="text-emerald-400">Mess</span>
-          <span className="text-sky-500">ages</span>
-        </Link>
-        <div className="text-lg">
-          <Button variant="secondary" to="/chat">
-            Chat
-          </Button>
-          <Button variant="secondary" to="/profile">
-            Profile
-          </Button>
+        <div className="flex items-end justify-center">
+          <Link
+            className="text-3xl drop-shadow"
+            to={auth.authenticated ? "/home" : "/"}
+          >
+            <span className="text-emerald-400">Mess</span>
+            <span className="text-sky-500">ages</span>
+          </Link>
+          <div className="text-lg">
+            <Button variant="secondary" to="/chat">
+              Chat
+            </Button>
+            <Button variant="secondary" to="/profile">
+              Profile
+            </Button>
+          </div>
         </div>
         <div className="flex">
           {auth.authenticated ? (
