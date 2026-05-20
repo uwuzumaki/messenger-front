@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const loaderData = useLoaderData();
+  const [id, setId] = useState();
   const [user, setUser] = useState();
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const AuthProvider = ({ children }) => {
     console.log("123");
     try {
       const res = await axios.get(url, { withCredentials: true });
+      setId(null);
       setUser(null);
       setAuthenticated(false);
       console.log(res);
@@ -26,6 +28,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     try {
+      setId(loaderData.user.id);
       setUser(loaderData.user.username);
       setAuthenticated(true);
     } catch (err) {
