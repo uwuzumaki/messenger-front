@@ -37,7 +37,7 @@ const Register = () => {
       console.log(result);
       auth.setUser(result.data.user.username);
       auth.setAuthenticated(true);
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       console.log(err);
     } finally {
