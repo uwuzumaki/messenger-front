@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
-import LoggedOut from "../LoggedOut/LoggedOut";
+import { useEffect, useState, use } from "react";
+
+import { AuthContext } from "../../contexts/authContext.jsx";
 import { socket } from "../../socket.js";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const auth = use(AuthContext);
 
   useEffect(() => {
     const socketMessages = (msg) => {
-      setMessages((prevMsg) => [...prevMsg, msg]);
+      setMessages((prevMsg) => [...prevMsg, msg.msg]);
     };
 
     socket.on("chat message", socketMessages);
@@ -20,9 +22,13 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(messages);
     if (input) {
-      console.log(input);
-      socket.emit("chat message", input);
+      const content = {
+        msg: input.trim(),
+        id: auth.id,
+      };
+      socket.emit("chat message", content);
       setInput("");
     }
   };
