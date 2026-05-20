@@ -38,6 +38,8 @@ const AuthProvider = ({ children }) => {
   }, [loaderData]);
 
   const value = {
+    id,
+    setId,
     user,
     setUser,
     authenticated,
