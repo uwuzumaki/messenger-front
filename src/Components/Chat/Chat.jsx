@@ -1,28 +1,43 @@
 import { useEffect, useState, use } from "react";
 
 import { AuthContext } from "../../contexts/authContext.jsx";
-import { socket } from "../../socket.js";
+import { getSocket, disconnectSocket } from "../../socket.js";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [connectStatus, setConnectStatus] = useState(false);
   const auth = use(AuthContext);
 
+  const socket = getSocket();
+
   useEffect(() => {
+    setConnectStatus(socket.connected);
+
     const socketMessages = (msg) => {
-      setMessages((prevMsg) => [...prevMsg, msg.msg]);
+      console.log(msg);
+      setMessages((prevMsg) => [...prevMsg, msg.content]);
+      socket.auth.lastMessageTime = msg.date;
+      console.log(socket.auth.lastMessageTime);
     };
 
+    const handleConnect = () => setConnectStatus(true);
+    const handleDisconnect = () => setConnectStatus(false);
+
     socket.on("chat message", socketMessages);
+    socket.on("connect", handleConnect);
+    socket.on("disconnect", handleDisconnect);
 
     return () => {
+      console.log("disconnecting listeners");
       socket.off("chat message", socketMessages);
+      socket.off("connection", handleConnect);
+      socket.off("disconnection", handleDisconnect);
     };
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(messages);
     if (input) {
       const content = {
         msg: input.trim(),
@@ -31,6 +46,16 @@ const Chat = () => {
       socket.emit("chat message", content);
       setInput("");
     }
+  };
+
+  const disconnect = () => {
+    console.log("before", socket);
+    if (socket.connected) {
+      socket.disconnect();
+    } else {
+      socket.connect();
+    }
+    console.log("after", socket);
   };
 
   return (
@@ -57,6 +82,9 @@ const Chat = () => {
         />
         <button className="m-1 rounded border-none bg-yellow-400 px-4 py-0 text-gray-900 outline-none">
           Send
+        </button>
+        <button className="hover:cursor-pointer" onClick={disconnect}>
+          {connectStatus ? "Disconnect" : "Connect"}
         </button>
       </form>
     </div>
