@@ -16,7 +16,10 @@ const Chat = () => {
 
     const socketMessages = (msg) => {
       console.log(msg);
-      setMessages((prevMsg) => [...prevMsg, msg.content]);
+      setMessages((prevMsg) => [
+        ...prevMsg,
+        { content: msg.content, user: msg.username },
+      ]);
       socket.auth.lastMessageTime = msg.date;
       console.log(socket.auth.lastMessageTime);
     };
@@ -42,6 +45,7 @@ const Chat = () => {
       const content = {
         msg: input.trim(),
         id: auth.id,
+        username: auth.user,
       };
       socket.emit("chat message", content);
       setInput("");
@@ -63,7 +67,8 @@ const Chat = () => {
       <ul id="messages">
         {messages.map((msg, index) => (
           <li key={index} className="text-white">
-            {msg}
+            {msg.user}
+            {msg.content}
           </li>
         ))}
       </ul>
