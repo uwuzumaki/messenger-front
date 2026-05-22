@@ -18,7 +18,7 @@ const Chat = () => {
       console.log(msg);
       setMessages((prevMsg) => [
         ...prevMsg,
-        { content: msg.content, user: msg.username },
+        { content: msg.content, user: msg.username, id: msg.userId },
       ]);
       socket.auth.lastMessageTime = msg.date;
       console.log(socket.auth.lastMessageTime);
@@ -63,18 +63,18 @@ const Chat = () => {
   };
 
   return (
-    <div className="flex w-full flex-1 flex-col justify-between">
-      <ul id="messages">
-        {messages.map((msg, index) => (
-          <li key={index} className="text-white">
-            {msg.user}
-            {msg.content}
+    <div className="flex min-h-0 w-full flex-1 flex-col justify-between">
+      <ul id="messages" className="min-h-0 overflow-y-scroll">
+        {messages.map((msg) => (
+          <li key={msg.userId} className="flex text-white">
+            <p className="m-2 text-slate-800">{msg.user}: </p>
+            <p className="mt-2">{msg.content}</p>
           </li>
         ))}
       </ul>
       <form
         id="form"
-        className="mx-auto box-border flex h-12 w-full bg-orange-100 p-1"
+        className="mx-auto box-border flex h-12 w-full shrink-0 bg-orange-100 p-1"
         action=""
         onSubmit={handleSubmit}
       >

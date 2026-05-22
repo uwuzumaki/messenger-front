@@ -9,12 +9,12 @@ const Layout = () => {
   const loading = navigation.state === "loading";
 
   return (
-    <div className="relative flex flex-1 flex-col">
+    <div className="relative flex h-screen flex-col">
       <AuthProvider>
         <Navigation />
         {loading && <LoadingOverlay />}
         {!loading && (
-          <div className="flex flex-1 flex-col items-center justify-center bg-slate-300">
+          <div className="flex min-h-0 flex-1 flex-col bg-slate-300">
             <Outlet />
           </div>
         )}
