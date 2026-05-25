@@ -1,4 +1,6 @@
-# (Messenger for The Odin Project)[https://www.theodinproject.com/lessons/nodejs-messaging-app]
+# [Messenger for The Odin Project](https://www.theodinproject.com/lessons/nodejs-messaging-app)
+
+[Backend](https://github.com/uwuzumaki/messenger-back)
 
 ## Objective
 
